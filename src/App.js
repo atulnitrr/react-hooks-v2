@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Joke from "./Joke";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
         />
         <button onClick={searchQuery}>Search</button>
       </div>
+      <hr />
+      <Joke />
     </>
   );
 }
