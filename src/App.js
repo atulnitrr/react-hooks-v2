@@ -3,9 +3,11 @@ import "./App.css";
 import Joke from "./Joke";
 import Stories from "./Stories";
 import Task from "./Task";
+import Gallary from "./Gallary";
 
 function App() {
   const [userQuery, setQuery] = useState("");
+  const [showGallery, setShowGallery] = useState(true);
 
   const queryHandler = (e) => {
     setQuery(e.target.value);
@@ -20,6 +22,10 @@ function App() {
 
   const searchQuery = () => {
     window.open(`https://google.com/search?q=${userQuery}`, "_blank");
+  };
+
+  const toggleGallery = () => {
+    setShowGallery(!showGallery);
   };
   return (
     <>
@@ -39,6 +45,14 @@ function App() {
       <hr />
 
       <Task></Task>
+      <hr />
+      <div>
+        {showGallery ? <Gallary></Gallary> : ""}
+        <button onClick={toggleGallery}>
+          {" "}
+          {showGallery ? "Hide" : "Show"} Gallery
+        </button>
+      </div>
       <hr />
       <Stories />
     </>
