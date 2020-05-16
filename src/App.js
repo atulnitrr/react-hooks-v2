@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [userQuery, setQuery] = useState("");
+
+  const queryHandler = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      searchQuery();
+    }
+  };
+
+  const searchQuery = () => {
+    window.open(`https://google.com/search?q=${userQuery}`, "_blank");
+  };
   return (
     <>
-      <div>App</div>
-      <h1>Dummy data</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, est? Hic
-        quas exercitationem autem, qui ab quia impedit modi, consectetur, fuga
-        dolore aliquid tempore nemo! Veniam debitis tempora id quo.
-      </p>
+      <h1>Hello Atul</h1>
+      <div className="form">
+        <input
+          type="text"
+          onChange={queryHandler}
+          onKeyPress={handleKeyPress}
+        />
+        <button onClick={searchQuery}>Search</button>
+      </div>
     </>
   );
 }
