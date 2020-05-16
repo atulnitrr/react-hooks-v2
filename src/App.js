@@ -27,6 +27,7 @@ function App() {
           type="text"
           onChange={queryHandler}
           onKeyPress={handleKeyPress}
+          placeholder="Google search "
         />
         <button onClick={searchQuery}>Search</button>
       </div>
