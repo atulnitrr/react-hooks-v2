@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { uuid } from "uuidv4";
+
+const TASK_STORE_TOKEN = "TASK_STORE_TOKEN";
+
+const storeTask = (taskMap) => {
+  localStorage.setItem(TASK_STORE_TOKEN, JSON.stringify(taskMap));
+};
+
+const getTaskFromStore = () => {
+  const taskMap = JSON.parse(localStorage.getItem(TASK_STORE_TOKEN));
+  return taskMap
+    ? taskMap
+    : {
+        tasks: [],
+        doneTask: [],
+      };
+};
 
 function Task() {
   const [taskTitle, setTaskTitle] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [doneTask, setDoneTask] = useState([]);
+  const taskMap = getTaskFromStore();
+  const [tasks, setTasks] = useState(taskMap.tasks);
+  const [doneTask, setDoneTask] = useState(taskMap.doneTask);
 
+  useEffect(() => {
+    storeTask({ tasks, doneTask });
+  }, [tasks, doneTask]);
   const handleTaskTitle = (e) => {
     const value = e.target.value;
     setTaskTitle(value);
