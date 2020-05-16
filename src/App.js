@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import "./App.css";
 import Joke from "./Joke";
 import Stories from "./Stories";
+import Task from "./Task";
 
 function App() {
   const [userQuery, setQuery] = useState("");
 
   const queryHandler = (e) => {
     setQuery(e.target.value);
+    console.log(userQuery);
   };
 
   const handleKeyPress = (event) => {
@@ -33,6 +35,10 @@ function App() {
       </div>
       <hr />
       <Joke />
+
+      <hr />
+
+      <Task></Task>
       <hr />
       <Stories />
     </>
